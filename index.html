@@ -18,21 +18,31 @@
 
     <div class="main-content">
     <img src="Image/wheatherLogo.png" alt="Weather Icon" style="display: block; margin: 0 auto 20px; width: 100px;">
-    <h1>Weather App</h1>
-    <div class="content">
-    <div class="search-box">
-        <input type="text" id="cityInput" placeholder="City Name">
-        <span class="clear-btn" onclick="clearInput()">x</span>
+    <h1>WeatherX</h1>
+     <div class="search-container">
+    <div class="input-wrapper">
+        <input type="text" id="cityInput" placeholder="Search city...">
+
+        <span class="clear-btn" onclick="clearInput()">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
     </div>
+
     <button class="search-btn" onclick="getWeather()">
         <i class="fa-solid fa-magnifying-glass"></i>
     </button>
-</div>
+
+    </div>
     <div id="weatherResult">
         <h1 id="dist">Coimbatore</h1>
+        <h1 id="dayNight"></h1>
         <h1 id="temp">0°C</h1>
         <img id="weather-icon" src="" alt="Weather Icon">
         <h1 id="weather-desc">Clear Sky</h1>
+        <div class='wind-desc3'>
+            <img src="Image/humidity.svg" alt="">
+            <img src="Image/wind.svg" alt="">
+        </div>
         <div class="wind-desc1">
             <h2>Humidity</h2>
             <h2>Wind Speed</h2>
@@ -40,6 +50,10 @@
         <div class="wind-desc2">
             <p id="humidity">0%</p>
             <p id="wind-speed">0km/hr</p>
+        </div>
+        <div class="sun-time">
+            <div class="suns"><h5>Sunrise :</h5><p id="sunrise"></p></div>
+            <div class="suns"><h5>Sunset:</h5><p id="sunset"></p></div>
         </div>
     </div>
     </div>

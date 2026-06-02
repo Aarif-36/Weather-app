@@ -41,8 +41,34 @@
                 .then(data => { 
                     if (data.cod === 200) {
 
+                        const timezoneOffset = data.timezone;
+                        const localTime = new Date(Date.now() + timezoneOffset * 1000 + new Date().getTimezoneOffset() * 60000);
+                        const hours = localTime.getHours();
+                        const dayNight = (hours >= 6 && hours < 18) ? "🌞 Day" : "🌙 Night";
+                        
+                        const timeString = localTime.toLocaleTimeString([], {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                        });
+
+                        document.getElementById("dayNight").innerHTML =`${dayNight} | ${timeString}`;
+
+                        const sunriseTime = new Date(
+                                (data.sys.sunrise + data.timezone) * 1000
+                            ).toUTCString().match(/\d{2}:\d{2}/)[0];
+
+                            const sunsetTime = new Date(
+                                (data.sys.sunset + data.timezone) * 1000
+                            ).toUTCString().match(/\d{2}:\d{2}/)[0];
+
+                            document.getElementById("sunrise").innerHTML = `${sunriseTime}`;
+                            document.getElementById("sunset").innerHTML = `${sunsetTime}`;
+
+
                         const weatherIcon = data.weather[0].description;
-                        document.getElementById('dist').innerHTML = `${data.name}, ${data.sys.country}`;
+                        const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+                        const countryName = regionNames.of(data.sys.country);
+                        document.getElementById('dist').innerHTML = `${data.name}, ${countryName}`;
                         document.getElementById('temp').innerHTML = `${Math.floor(data.main.temp)} °C`;
                         changeWeather(weatherIcon);
                         document.getElementById('weather-desc').innerHTML = `${data.weather[0].description}`;
@@ -104,11 +130,9 @@
        const weatherIcon =  document.getElementById('weather-icon')
      
         switch(iconCode) {
+
             case "clear sky":
             case "few clouds":
-                weatherIcon.src = "Image/mostly-clear-day.svg";
-                break;
-
             case "broken clouds":
             case "scattered clouds":
                 weatherIcon.src = "Image/cloudy.svg";
@@ -131,3 +155,6 @@
                 weatherIcon.src = "Image/cloudy.svg";
         }
     }
+
+
+    
