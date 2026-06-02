@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="container">
+
+   <video id="bgVideo" autoplay muted loop>
+    <source src="" type="video/mp4">
+   </video>
+
+
+    <div class="main-content">
+    <img src="Image/wheatherLogo.png" alt="Weather Icon" style="display: block; margin: 0 auto 20px; width: 100px;">
+    <h1>Weather App</h1>
+    <div class="content">
+    <div class="search-box">
+        <input type="text" id="cityInput" placeholder="City Name">
+        <span class="clear-btn" onclick="clearInput()">x</span>
+    </div>
+    <button class="search-btn" onclick="getWeather()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+</div>
+    <div id="weatherResult">
+        <h1 id="dist">Coimbatore</h1>
+        <h1 id="temp">0°C</h1>
+        <img id="weather-icon" src="" alt="Weather Icon">
+        <h1 id="weather-desc">Clear Sky</h1>
+        <div class="wind-desc1">
+            <h2>Humidity</h2>
+            <h2>Wind Speed</h2>
+        </div>
+        <div class="wind-desc2">
+            <p id="humidity">0%</p>
+            <p id="wind-speed">0km/hr</p>
+        </div>
+    </div>
+    </div>
+    
+
+    <script src="main.js"></script>
+</body>
+</html>

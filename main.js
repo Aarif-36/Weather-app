@@ -1,0 +1,133 @@
+      
+    // enter key event listener for city input
+       const cityInput = document.getElementById("cityInput");
+
+        cityInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                getWeather(); // Calls your weather function
+            }
+        });
+
+       
+       // Clear button functionality
+       const input = document.getElementById('cityInput');
+       const clearBtn = document.querySelector('.clear-btn');
+
+        input.addEventListener('input', () => {
+            clearBtn.style.display = input.value ? 'block' : 'none';
+        });
+
+        function clearInput() {
+            input.value = '';
+            clearBtn.style.display = 'none';
+        }
+
+
+
+        // Fetch weather data for default city on page load
+        window.onload = function () {
+            getWeather("Coimbatore");
+        };
+                
+        function getWeather(city = null) {
+
+            city = city || document.getElementById('cityInput').value;
+
+            const apiKey = '9f916d6f6d91c8c1a294af2de5b2ab39'; // Replace with your OpenWeatherMap API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => { 
+                    if (data.cod === 200) {
+
+                        const weatherIcon = data.weather[0].description;
+                        document.getElementById('dist').innerHTML = `${data.name}, ${data.sys.country}`;
+                        document.getElementById('temp').innerHTML = `${Math.floor(data.main.temp)} °C`;
+                        changeWeather(weatherIcon);
+                        document.getElementById('weather-desc').innerHTML = `${data.weather[0].description}`;
+                        document.getElementById('wind-speed').innerHTML = `${Math.round(data.wind.speed * 3.6)}km/hr`;
+                        document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
+
+                        const weather = data.weather[0].description;
+                        changeBackground(weather);
+
+                        console.log(data);
+                    } else {
+                        document.getElementById('weatherResult').innerHTML = `<p>${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                    document.getElementById('weatherResult').innerHTML = `<p>Error fetching weather data.</p>`;
+                });
+        }
+
+       // Function to change background based on weather condition
+        function changeBackground(weather) {
+   
+        console.log("Weather:", weather);
+
+        // const body = document.body;
+        const video = document.getElementById("bgVideo");
+
+        switch(weather.toLowerCase()) {
+        case "clear sky":
+            video.src = "videos/clear.mp4";
+            break;
+
+        case "few clouds":
+        case "broken clouds":
+        case "scattered clouds":
+            video.src = "videos/fewclouds.mp4";
+            break;
+
+        case "rain":
+        case "light rain":
+             video.src = "videos/rain.mp4";
+            break;
+
+        case "smoke":
+        case "overcast clouds":
+            video.src = "videos/smoke.mp4";
+            break;
+         
+        default:
+            video.src = "videos/smoke.mp4";;
+    }
+}
+
+       // Function to change weather icon based on weather condition
+        function changeWeather(iconCode) { 
+        // Implementation for changing weather icon
+    
+       const weatherIcon =  document.getElementById('weather-icon')
+     
+        switch(iconCode) {
+            case "clear sky":
+            case "few clouds":
+                weatherIcon.src = "Image/mostly-clear-day.svg";
+                break;
+
+            case "broken clouds":
+            case "scattered clouds":
+                weatherIcon.src = "Image/cloudy.svg";
+                break;
+
+            case "rain":
+            case "light rain":
+                weatherIcon.src = "Image/rain.svg";
+                break;
+
+            case "smoke":
+                weatherIcon.src = "Image/smoke.svg";
+                break;
+
+            case "overcast clouds":
+                weatherIcon.src = "Image/overcast.svg";
+                break;
+
+            default:
+                weatherIcon.src = "Image/cloudy.svg";
+        }
+    }
