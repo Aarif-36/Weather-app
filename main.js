@@ -84,7 +84,7 @@
                         document.getElementById('wind-speed').innerHTML = `${Math.round(data.wind.speed * 3.6)}km/hr`;
                         document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
 
-                        const weather = data.weather[0].description;
+                        const weather = data.weather[0].main;
                         changeBackground(weather);
 
                         console.log(data);
@@ -105,23 +105,19 @@
         const video = document.getElementById("bgVideo");
 
         switch(weather.toLowerCase()) {
-        case "clear sky":
+        case "clear":
             video.src = "videos/clear.mp4";
             break;
 
-        case "few clouds":
-        case "broken clouds":
-        case "scattered clouds":
+        case "clouds":
             video.src = "videos/fewclouds.mp4";
             break;
 
         case "rain":
-        case "light rain":
              video.src = "videos/rain.mp4";
             break;
 
         case "smoke":
-        case "overcast clouds":
             video.src = "videos/smoke.mp4";
             break;
          
