@@ -3,10 +3,14 @@ body{
     padding: 0;
 }   
 .container{ 
+     min-height: 100vh;
+     width: 100%;
+     padding: 20px 16px;
      background-image: url('Image/back.jpeg');
-     background-repeat:  no-repeat;
+     background-repeat: no-repeat;
      background-size: cover;
-     background-position:center;
+     background-position: center;
+     box-sizing: border-box;
 }
 h1,h2{
     text-align: center;
@@ -40,13 +44,9 @@ h1,h2{
     border: none;
     outline: none;
     border-radius: 30px;
-
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
-    border: 1px solid rgba(255,255,255,0.2);
-
     font-size: 16px;
     box-sizing: border-box;
 }
@@ -77,17 +77,14 @@ h1,h2{
     border: none;
     border-radius: 50%;
     cursor: pointer;
-
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
-    border: 1px solid rgba(255,255,255,0.2);
-
     color: white;
     font-size: 18px;
     transition: all 0.3s ease;
 }
+
 
 .search-btn:hover{
     transform: scale(1.08);
@@ -101,9 +98,9 @@ h1,h2{
     border-radius:20px ;
     box-shadow:0 8px 32px rgba(0,0,0,0.3);
     padding: 20px;
-    height: auto;
+    height: 600px;
     width: 500px;
-    margin: 50px auto;
+    margin: 20px auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 #weatherResult{
@@ -224,7 +221,6 @@ h1,h2{
         width: 90%;
         max-width: 350px;
         height: auto;
-        margin-top: 30%;
         padding: 15px;
     }
     .main-content img{
@@ -267,7 +263,6 @@ h1,h2{
     .main-content{
         width: 75%;
         padding: 12px;
-        margin-top: 50%;
     }
 
     #temp{
