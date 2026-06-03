@@ -143,6 +143,9 @@
 
             case "rain":
             case "light rain":
+            case "heavy intensity rain":
+            case  "moderate rain":
+            case "very heavy rain":
                 weatherIcon.src = "Image/rain.svg";
                 break;
 
