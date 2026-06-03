@@ -33,14 +33,23 @@
 
             city = city || document.getElementById('cityInput').value;
 
+            if (!city) {
+                document.getElementById('error-msg').textContent = '!Enter a city name';
+                return;
+            }
+
+            document.getElementById('error-msg').textContent = '';
+
             const apiKey = '9f916d6f6d91c8c1a294af2de5b2ab39'; // Replace with your OpenWeatherMap API key
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
             fetch(url)
-                .then(response => response.json())
+                .then(response => response.json())  
                 .then(data => { 
-                    if (data.cod === 200) {
-
+                    if (data.cod !== 200) {
+                         document.getElementById('error-msg').textContent = data.message;
+                         return;
+                    } else {
                         const timezoneOffset = data.timezone;
                         const localTime = new Date(Date.now() + timezoneOffset * 1000 + new Date().getTimezoneOffset() * 60000);
                         const hours = localTime.getHours();
@@ -79,8 +88,6 @@
                         changeBackground(weather);
 
                         console.log(data);
-                    } else {
-                        document.getElementById('weatherResult').innerHTML = `<p>${data.message}</p>`;
                     }
                 })
                 .catch(error => {

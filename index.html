@@ -11,12 +11,14 @@
 </head>
 <body class="container">
 
-   <video id="bgVideo" autoplay muted loop>
-    <source src="" type="video/mp4">
-   </video>
-
-
     <div class="main-content">
+    
+    <div class="video-container">
+    <video id="bgVideo" autoplay muted loop>
+    <source src="" type="video/mp4">
+    </video>
+    </div>
+
     <img src="Image/wheatherLogo.png" alt="Weather Icon" style="display: block; margin: 0 auto 20px; width: 100px;">
     <h1>WeatherX</h1>
      <div class="search-container">
@@ -34,6 +36,7 @@
 
     </div>
     <div id="weatherResult">
+        <p id="error-msg" style="color: red;"></p>
         <h1 id="dist">Coimbatore</h1>
         <h1 id="dayNight"></h1>
         <h1 id="temp">0°C</h1>
